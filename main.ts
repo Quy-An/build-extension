@@ -8,4 +8,10 @@ namespace AnBuildExtension{
         const y = Math.floor(index / 5);
         led.plot(x, y)
     }
+
+    //% block="set address $add"
+    //% index.min=64 index.max=68
+    export function setAdd(add: number): void{
+
+    }
 }
