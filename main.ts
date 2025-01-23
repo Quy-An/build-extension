@@ -15,9 +15,9 @@ namespace AnBuildExtension{
         let oldAddress = 64;
         let data = 0;
         let dataToSend: number[] = [newAddress, 2, 0, 0, 0, (newAddress+2)];
-        let buffer = pins.createBuffer(dataToSend.length);
+        let buffer = pins.createBuffer(6);
 
-        for (let i = 0; i < dataToSend.length; i++) {
+        for (let i = 0; i < 6; i++) {
             buffer.setUint8(i, dataToSend[i]);
         }
 
