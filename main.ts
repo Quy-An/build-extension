@@ -12,16 +12,18 @@ namespace AnBuildExtension{
     //% block="set newAddress $newAddress."
     //% newAddress.min=64 newAddress.max=68
     export function setAddress(newAddress: number): void {
+        let oldAddress = 64;
+        let data = 0;
         let dataToSend: number[] = [newAddress, 2, 0, 0, 0, (newAddress+2)];
         let buffer = pins.createBuffer(dataToSend.length);
-        let oldAddress = 64;
+
         for (let i = 0; i < dataToSend.length; i++) {
             buffer.setUint8(i, dataToSend[i]);
         }
 
         for (let i = 64; i < 69; i++) {
             pins.i2cWriteNumber(i, 1, NumberFormat.UInt8LE, false)
-            let data = pins.i2cReadNumber(i, NumberFormat.UInt8LE)
+            data = pins.i2cReadNumber(i, NumberFormat.UInt8LE)
             if (data == 1) {
                 oldAddress = i;
             }
@@ -29,6 +31,4 @@ namespace AnBuildExtension{
 
         pins.i2cWriteBuffer(oldAddress, buffer);
     }
-
-
 }
