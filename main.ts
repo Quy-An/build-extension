@@ -10,7 +10,7 @@ namespace AnBuildExtension{
     }
 
     //% block="set newAddress $newAddress."
-    //% $newAddress.min=64 newAddress.max=68
+    //% newAddress.min=64 newAddress.max=68
     export function setAddress(newAddress: number): void {
         let dataToSend: number[] = [newAddress, 2, 0, 0, 0, (newAddress+2)];
         let buffer = pins.createBuffer(dataToSend.length);
