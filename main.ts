@@ -9,14 +9,14 @@ namespace AnBuildExtension{
         led.plot(x, y)
     }
 
-    //% block="send I2C data to address $addr. byte1 $data1, byte2 $data2, byte3 $data3, byte4 $data4, byte5 $data5, byte6 $data6"
-    export function sendI2CData(addr: number, data1: number, data2: number, data3: number, data4: number, data5: number, data6: number): void {
-        let dataToSend: number[] = [data1, data2, data3, data4, data5, data6];
+    //% block="set oldAddress $oldAddress to newAddress $newAddress."
+    export function setAddress(oldAddress: number, newAddress: number): void {
+        let dataToSend: number[] = [newAddress, 2, 0, 0, 0, (newAddress+2)];
         let buffer = pins.createBuffer(dataToSend.length);
         for (let i = 0; i < dataToSend.length; i++) {
             buffer.setUint8(i, dataToSend[i]);
         }
-        pins.i2cWriteBuffer(addr, buffer);
+        pins.i2cWriteBuffer(oldAddress, buffer);
     }
 
 
